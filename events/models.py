@@ -3,8 +3,14 @@ from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.conf import settings
 
+class AbstractTimesStampedModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-class Event(models.Model):
+    class Meta:
+        abstract = True
+
+class Event(AbstractTimesStampedModel):
     name = models.CharField(max_length=255)
     location = models.CharField(max_length=255)
     start_time = models.DateTimeField()
@@ -24,7 +30,7 @@ class Event(models.Model):
         return self.attendee_count >= self.max_capacity
 
 
-class Attendee(models.Model):
+class Attendee(AbstractTimesStampedModel):
     event = models.ForeignKey(
         Event,
         related_name="attendees",

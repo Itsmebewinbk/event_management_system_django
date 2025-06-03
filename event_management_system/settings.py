@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "drf_yasg",
     "rest_framework",
-    "rest_framework_simplejwt",
+    
     "events",
 ]
 
@@ -66,9 +66,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_HEADERS = default_headers + ("cache-control",)
 
 REST_FRAMEWORK = {
-    "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    ),
+    
     # "DEFAULT_FILTER_BACKENDS": [
     #     "django_filters.rest_framework.DjangoFilterBackend",
     # ],
